@@ -2,11 +2,64 @@
 layout: page
 permalink: /teaching/
 title: teaching
-description: Materials for courses you taught. Replace this text with your description.
+description: Teaching is all you need.
 nav: true
-nav_order: 6
+nav_order: 2
+display_categories: [SJTU]
+horizontal: false
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
+<!-- pages/teaching.md -->
+<div class="teaching">
+{% if site.enable_teaching_categories and page.display_categories %}
+  <!-- Display categorized teachings -->
+  {% for category in page.display_categories %}
+  <a id="{{ category }}" href=".#{{ category }}">
+    <h2 class="category">{{ category }}</h2>
+  </a>
+  {% assign categorized_teachings = site.teachings | where: "category", category %}
+  {% assign sorted_teachings = categorized_teachings | sort: "importance" %}
+  <!-- Generate cards for each teaching -->
+  {% if page.horizontal %}
+  <div class="container">
+    <div class="row row-cols-2">
+    {% for teaching in sorted_teachings %}
+      {% include teachings_horizontal.liquid %}
+    {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div class="grid">
+    {% for teaching in sorted_teachings %}
+      {% include teachings.liquid %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endfor %}
 
-Organize your courses by years, topics, or universities, however you like!
+{% else %}
+
+<!-- Display teachings without categories -->
+
+{% assign sorted_teachings = site.teachings | sort: "importance" %}
+
+  <!-- Generate cards for each teaching -->
+
+{% if page.horizontal %}
+
+  <div class="container">
+    <div class="row row-cols-2">
+    {% for teaching in sorted_teachings %}
+      {% include teachings_horizontal.liquid %}
+    {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div class="grid">
+    {% for teaching in sorted_teachings %}
+      {% include teachings.liquid %}
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endif %}
+</div>

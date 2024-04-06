@@ -6,7 +6,7 @@ description: Teaching is all you need.
 nav: true
 nav_order: 2
 display_categories: [SJTU]
-horizontal: false
+horizontal: true
 ---
 
 <!-- pages/teaching.md -->

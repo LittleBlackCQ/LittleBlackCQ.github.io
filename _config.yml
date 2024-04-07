@@ -261,7 +261,7 @@ defaults:
       sitemap: false
 
 sass:
-  style: expanded
+  style: compressed
 
 # -----------------------------------------------------------------------------
 # Jekyll Minifier

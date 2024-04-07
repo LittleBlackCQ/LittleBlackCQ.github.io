@@ -179,6 +179,9 @@ collections:
   teachings:
     output: true
     permalink: /teaching/:path/
+  literatures:
+    output: true
+    permalink: /literatures/:path/
 
 announcements:
   enabled: false
@@ -258,7 +261,7 @@ defaults:
       sitemap: false
 
 sass:
-  style: compressed
+  style: expanded
 
 # -----------------------------------------------------------------------------
 # Jekyll Minifier
@@ -390,6 +393,7 @@ enable_darkmode: true # enables switching between light/dark modes
 enable_navbar_social: false # enables displaying social links in the navbar on the about page
 enable_project_categories: true # enables categorization of projects into multiple categories
 enable_teaching_categories: true # enables categorization of teaching into multiple categories
+enable_literature_categories: true # enables categorization of literature into multiple categories
 enable_medium_zoom: true # enables image zoom feature (as on medium.com)
 enable_progressbar: true # enables a horizontal progress bar linked to the vertical scroll position
 

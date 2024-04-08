@@ -5,7 +5,7 @@ title: literatures
 description: This page contains the important papers in my research direction.
 nav: true
 nav_order: 3
-display_categories: [Netlist]
+display_categories: [Netlist, Graph]
 horizontal: true
 ---
 

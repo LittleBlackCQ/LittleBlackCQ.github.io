@@ -28,3 +28,13 @@ category: Graph
 <div class="caption">
     Diagram of Graph Attention Networks
 </div>
+
+### Reference
+```bib
+@inproceedings{velivckovic2018graph,
+  title={Graph Attention Networks},
+  author={Veli{\v{c}}kovi{\'c}, Petar and Cucurull, Guillem and Casanova, Arantxa and Romero, Adriana and Li{\`o}, Pietro and Bengio, Yoshua},
+  booktitle={International Conference on Learning Representations},
+  year={2018}
+}
+```

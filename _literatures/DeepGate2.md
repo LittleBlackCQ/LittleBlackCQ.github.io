@@ -45,3 +45,15 @@ structure and functionality into embedding space, where the structure represents
 <div class="caption">
     Left: One-round propagation process; Right: Functionality-aware loss.
 </div>
+
+### Reference
+```bib
+@inproceedings{shi2023deepgate2,
+  title={Deepgate2: Functionality-aware circuit representation learning},
+  author={Shi, Zhengyuan and Pan, Hongyang and Khan, Sadaf and Li, Min and Liu, Yi and Huang, Junhua and Zhen, Hui-Ling and Yuan, Mingxuan and Chu, Zhufei and Xu, Qiang},
+  booktitle={2023 IEEE/ACM International Conference on Computer Aided Design (ICCAD)},
+  pages={1--9},
+  year={2023},
+  organization={IEEE}
+}
+```

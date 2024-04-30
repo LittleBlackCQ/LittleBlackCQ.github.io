@@ -27,3 +27,14 @@ category: Netlist
 <div class="caption">
     Diagram of the whole training process of DeepGate
 </div>
+
+### Reference
+```bib
+@inproceedings{li2022deepgate,
+  title={Deepgate: Learning neural representations of logic gates},
+  author={Li, Min and Khan, Sadaf and Shi, Zhengyuan and Wang, Naixing and Yu, Huang and Xu, Qiang},
+  booktitle={Proceedings of the 59th ACM/IEEE Design Automation Conference},
+  pages={667--672},
+  year={2022}
+}
+```

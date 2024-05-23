@@ -261,7 +261,7 @@ defaults:
       sitemap: false
 
 sass:
-  style: compressed
+  style: compressed # docker compose up
 
 # -----------------------------------------------------------------------------
 # Jekyll Minifier

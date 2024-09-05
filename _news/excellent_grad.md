@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-:sparkles: Awarded as the excellent graduate of Shanghai!
+:sparkles: Awarded as an excellent graduate in Shanghai!

@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-:tada: One paper accepted by IEEE TIV!
+:tada: One paper was accepted by IEEE TIV!

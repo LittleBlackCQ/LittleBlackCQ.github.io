@@ -6,7 +6,7 @@ title: blank # the website title (if blank, full name will be used instead)
 first_name: Kezhi
 middle_name:
 last_name: Li
-email: 390295201@qq.com
+email: kzli24@cse.cuhk.edu.hk
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   This is the personal website of Kezhi Li, a Ph.D. candidate of CUHK CSE.
 # footer_text: >

@@ -2,10 +2,10 @@
 layout: page
 permalink: /teaching/
 title: teaching
-description: Teaching is all you need.
+description: Teaching is not all you need.
 nav: true
 nav_order: 2
-display_categories: [SJTU]
+display_categories: [SJTU, CUHK]
 horizontal: true
 ---
 

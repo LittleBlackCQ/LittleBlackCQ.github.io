@@ -1,0 +1,5 @@
+Hi, I'm Kezhi Li (李柯志), a first-year Ph.D. candidate in the [CURE Lab](https://cure-lab.github.io/) at The Chinese University of Hong Kong, supervised by [Prof. Qiang Xu](https://www.cse.cuhk.edu.hk/people/faculty/qiang-xu/). Previously, I worked with [Prof. Ming Yang](https://cyberc3.sjtu.edu.cn/) and [Prof. Yeqiang Qian](https://automation.sjtu.edu.cn/QIAN-Yeqiang) at Shanghai Jiao Tong University on 3D vision using LiDARs during my undergraduate studies, and received my B.Eng in Electrical and Computer Engineering from [UM-SJTU JI](https://www.ji.sjtu.edu.cn/).
+
+My research interests focus on AI for Electronic Design Automation (AI+EDA) and formal verification, aiming to implement the state-of-the-art open-source hardware verification tools. Feel free to contact me via my email.
+
+I am also a marxist.

@@ -1,0 +1,16 @@
+education:
+  - degree: "Ph.D. Candidate in Computer Science and Engineering"
+    institution: "The Chinese University of Hong Kong"
+    year: "2024-Present"
+    description: "Research in interdisciplinary domain of EDA and AI. Advisor: Prof. Qiang Xu."
+  
+  - degree: "B.Eng in Electrical and Computer Engineering"
+    institution: "University of Michigan-Shanghai Jiao Tong University Joint Institute"
+    year: "2020-2024"
+
+skills:
+  - category: "Programming Languages"
+    items: ["Python", "Rust", "C++", "MATLAB", "Verilog"]
+
+  - category: "Tools & Frameworks"
+    items: ["PyTorch", "Langchain", "Linux", "Git", "Docker"]

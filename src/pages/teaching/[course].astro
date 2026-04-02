@@ -1,0 +1,189 @@
+---
+import BaseLayout from '@components/layout/BaseLayout.astro';
+import { getConfig } from '@lib/config';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const config = getConfig();
+if (!config.pages.teaching) return Astro.redirect('/404');
+
+export async function getStaticPaths() {
+  const coursesDir = path.resolve(process.cwd(), 'src/content/teaching');
+  const paths = [];
+  
+  try {
+    const items = fs.readdirSync(coursesDir);
+    for (const item of items) {
+      const itemPath = path.join(coursesDir, item);
+      if (fs.statSync(itemPath).isDirectory()) {
+        const indexPath = path.join(itemPath, 'index.mdx');
+        if (fs.existsSync(indexPath)) {
+          paths.push({ params: { course: item } });
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Error reading courses directory:', error);
+  }
+  
+  return paths;
+}
+
+const { course } = Astro.params;
+
+// Load the specific MDX file
+const mdxPath = `/src/content/teaching/${course}/index.mdx`;
+const mdxModules = import.meta.glob('/src/content/teaching/*/index.mdx');
+const mdxModule = mdxModules[mdxPath];
+
+if (!mdxModule) {
+  return Astro.redirect('/404');
+}
+
+const { frontmatter, default: MdxContent } = await mdxModule();
+
+// Handle redirect if specified
+if (frontmatter.redirect_url) {
+  return Astro.redirect(frontmatter.redirect_url);
+}
+
+// Load all courses for navigation
+const allCourses = [];
+for (const modulePath in mdxModules) {
+  const match = modulePath.match(/\/src\/content\/teaching\/([^\/]+)\/index\.mdx$/);
+  if (match) {
+    const slug = match[1];
+    const module = await mdxModules[modulePath]();
+    allCourses.push({
+      slug,
+      title: module.frontmatter.title || slug,
+      semester: module.frontmatter.semester || '',
+      year: module.frontmatter.year || 0
+    });
+  }
+}
+
+// Sort by year (newest first)
+allCourses.sort((a, b) => b.year - a.year);
+
+// Find previous and next courses for navigation
+const courseIndex = allCourses.findIndex(c => c.slug === course);
+const prevCourse = courseIndex < allCourses.length - 1 ? allCourses[courseIndex + 1] : null;
+const nextCourse = courseIndex > 0 ? allCourses[courseIndex - 1] : null;
+---
+
+<BaseLayout title={frontmatter.title} description={`${frontmatter.course_id} - ${frontmatter.role} at ${frontmatter.university}`}>
+  <div class="animate-on-scroll">
+    <div class="page-header">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold">{frontmatter.title}</h1>
+          <div class="mt-2 text-[var(--color-text-secondary)]">
+            <p class="text-lg">
+              <span class="font-mono font-medium">{frontmatter.course_id}</span> • {frontmatter.semester} {frontmatter.year} • {frontmatter.role}
+            </p>
+            <p class="mt-1">{frontmatter.university}</p>
+          </div>
+        </div>
+        <a href="/teaching" class="text-sm text-[var(--color-accent)] hover:underline" data-astro-prefetch>
+          ← Back to Teaching
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="animate-on-scroll mt-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Main content -->
+      <div class="lg:col-span-2">
+        <div class="prose prose-lg max-w-none">
+          <MdxContent />
+        </div>
+
+        <!-- Course metadata -->
+        <div class="mt-10 pt-6 border-t border-[var(--color-border)]">
+          <h3 class="text-lg font-semibold mb-4">Course Details</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {frontmatter.professor && (
+              <div>
+                <p class="text-sm text-[var(--color-text-secondary)]">Professor</p>
+                <p class="font-medium">
+                  {frontmatter.professor_url ? (
+                    <a href={frontmatter.professor_url} target="_blank" rel="noopener noreferrer" class="text-[var(--color-accent)] hover:underline">
+                      {frontmatter.professor}
+                    </a>
+                  ) : frontmatter.professor}
+                </p>
+              </div>
+            )}
+            
+            {frontmatter.other_tas && (
+              <div>
+                <p class="text-sm text-[var(--color-text-secondary)]">Teaching Assistants</p>
+                <p class="font-medium">{frontmatter.other_tas}</p>
+              </div>
+            )}
+            
+            {frontmatter.ug_helper && (
+              <div>
+                <p class="text-sm text-[var(--color-text-secondary)]">UG Helper</p>
+                <p class="font-medium">{frontmatter.ug_helper}</p>
+              </div>
+            )}
+            
+            {frontmatter.syllabus_url && (
+              <div>
+                <p class="text-sm text-[var(--color-text-secondary)]">Syllabus</p>
+                <p class="font-medium">
+                  <a href={frontmatter.syllabus_url} target="_blank" rel="noopener noreferrer" class="text-[var(--color-accent)] hover:underline">
+                    View Syllabus
+                  </a>
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar with navigation -->
+      <div class="lg:col-span-1">
+        <div class="sticky top-24">
+          <div class="p-5 rounded-xl bg-[var(--color-card-bg)] border border-[var(--color-border)]">
+            <h3 class="font-semibold mb-4">Course Navigation</h3>
+            
+            <div class="space-y-3">
+               {prevCourse && (
+                <a href={`/teaching/${prevCourse.slug}`} class="block p-3 rounded-lg hover:bg-[var(--color-border)]/50 transition-colors" data-astro-prefetch>
+                  <p class="text-sm text-[var(--color-text-secondary)]">Previous Course</p>
+                  <p class="font-medium truncate">{prevCourse.title}</p>
+                  <p class="text-xs text-[var(--color-text-secondary)] mt-1">
+                    {prevCourse.semester} {prevCourse.year}
+                  </p>
+                </a>
+              )}
+              
+              {nextCourse && (
+                <a href={`/teaching/${nextCourse.slug}`} class="block p-3 rounded-lg hover:bg-[var(--color-border)]/50 transition-colors" data-astro-prefetch>
+                  <p class="text-sm text-[var(--color-text-secondary)]">Next Course</p>
+                  <p class="font-medium truncate">{nextCourse.title}</p>
+                  <p class="text-xs text-[var(--color-text-secondary)] mt-1">
+                    {nextCourse.semester} {nextCourse.year}
+                  </p>
+                </a>
+              )}
+            </div>
+            
+            <div class="mt-6 pt-4 border-t border-[var(--color-border)]">
+               <a href="/teaching" class="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[var(--color-accent)]/10 text-[var(--color-accent)] hover:bg-[var(--color-accent)]/20 transition-colors" data-astro-prefetch>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to All Courses
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

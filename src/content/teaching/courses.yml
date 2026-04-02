@@ -1,0 +1,40 @@
+courses:
+  - course_id: "CENG2400"
+    title: "Embedded System Design"
+    semester: "Fall"
+    year: 2025
+    role: "Teaching Assistant"
+    university: "The Chinese University of Hong Kong"
+    url: "/teaching/ceng2400-25"
+  
+  - course_id: "CENG2400"
+    title: "Embedded System Design"
+    semester: "Fall"
+    year: 2024
+    role: "Teaching Assistant"
+    university: "The Chinese University of Hong Kong"
+    url: "/teaching/ceng2400"
+  
+  - course_id: "ECE2810J"
+    title: "Data Structures and Algorithms"
+    semester: "Fall"
+    year: 2023
+    role: "Teaching Assistant"
+    university: "University of Michigan-Shanghai Jiao Tong University Joint Institute"
+    url: "/teaching/ece2810j"
+  
+  - course_id: "ECE3100J"
+    title: "Electronic Circuits"
+    semester: "Summer"
+    year: 2024
+    role: "Teaching Assistant"
+    university: "University of Michigan-Shanghai Jiao Tong University Joint Institute"
+    url: "/teaching/ece3100j"
+  
+  - course_id: "VE280"
+    title: "Elemental Programming"
+    semester: "Summer"
+    year: 2022
+    role: "Teaching Assistant"
+    university: "University of Michigan-Shanghai Jiao Tong University Joint Institute"
+    url: "/teaching/ve280"

@@ -27,6 +27,9 @@ social:
   dblp: ""
   email: "kzli24@cse.cuhk.edu.hk"
 
+cv:
+  hide_pdf_download: true
+
 pages:
   about: true
   publications: true
